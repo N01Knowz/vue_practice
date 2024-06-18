@@ -1,15 +1,22 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 
-defineProps({
-  msg: String,
-});
-
+// reactive state
 const count = ref(0);
+
+// functions that mutate state and trigger updates
+function increment() {
+  count.value++;
+}
+
+// lifecycle hooks
+onMounted(() => {
+  console.log(`The initial count is ${count.value}.`);
+});
 </script>
 
 <template>
-  <h1 class="text-3xl">{{ msg }}</h1>
+  <button @click="increment" class="btn btn-primary">Count is: {{ count }}</button>
 </template>
 
 <style scoped>
